@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf ./_site && npm run build:eleventy & npm run build:tailwind",
+    "build:eleventy": "npx @11ty/eleventy",
+    "build:tailwind": "TAILWIND_MODE=build NODE_ENV=production postcss ./tailwind.css --output ./_site/default.css",
+    "dev": "rm -rf ./_site && npm run dev:eleventy & npm run dev:tailwind",
+    "dev:eleventy": "npx @11ty/eleventy --serve",
+    "dev:tailwind": "TAILWIND_MODE=watch NODE_ENV=development postcss ./tailwind.css --output ./_site/default.css --watch"
   },
   "keywords": [],
   "author": "",
